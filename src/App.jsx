@@ -1,10 +1,11 @@
-import Counter from "./projects/3_project/Counter";
+import TodoApp from "./projects/2_project/TodoApp";
+
 
 const App = () => {
   return (
     <>
      <div className="container mx-auto">
-       <Counter />
+       <TodoApp />
      </div>
     </>
   );

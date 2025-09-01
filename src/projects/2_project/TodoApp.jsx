@@ -2,28 +2,19 @@ import { useState } from "react";
 import todoData from "./todoData";
 
 const TodoApp = () => {
-  const [data, seData] = useState(todoData);
+  const [data, setData] = useState(todoData);
   const [inputValue, setInput] = useState("");
-  const removeItem = (id) => {
-    seData((prev) => prev.filter((ele) => ele.id !== id));
-  };
-
   const addItem = () => {
-    if(!inputValue.trim()) return
+    if(!inputValue) return
     const newData = {
       id: data.length + 1,
-      task: inputValue.trim(),
+      task: inputValue,
     };
-    seData((prev) => {
-      return [newData, ...prev];
-    });
-    setInput("");
+    setData((prev) => [newData, ...prev]);
+    setInput('')
   };
-
-  const clearAll = (item) => {
-    if (item.length > 2) {
-      seData([]);
-    }
+  const deleteItem = (id) => {
+    setData((prev) => prev.filter((ele) => ele.id !== id));
   };
   return (
     <>
@@ -34,13 +25,13 @@ const TodoApp = () => {
         <div className="w-full space-y-5">
           <div className="flex gap-5">
             <input
-              type="text"
-              className="outline-0 border-2 rounded w-full border-orange-600 px-2"
-              placeholder="write your task"
-              value={inputValue}
               onChange={(e) => {
                 setInput(e.target.value);
               }}
+              value={inputValue}
+              type="text"
+              className="outline-0 border-2 rounded w-full border-orange-600 px-2"
+              placeholder="write your task"
             />
             <button
               onClick={addItem}
@@ -49,31 +40,29 @@ const TodoApp = () => {
               Add
             </button>
           </div>
-          {data.map((item) => {
+
+          {data.map((ele) => {
             return (
               <p
-                key={item.id}
+                key={ele.id}
                 className="items-center border px-4 flex justify-between p-2 border-orange-600 rounded"
               >
-                
-                {item.task}
+                {ele.task}
                 <button
+                  onClick={() => {
+                    deleteItem(ele.id);
+                  }}
                   className="bg-red-600 cursor-pointer text-white px-5 py-1 rounded-lg"
-                  onClick={() => removeItem(item.id)}
                 >
                   delete
                 </button>
               </p>
             );
           })}
-          {data.length > 2 && (
-            <button
-              className="bg-red-600 cursor-pointer text-white px-5 py-2 rounded-lg"
-              onClick={() => clearAll(data)}
-            >
-              Clear All
-            </button>
-          )}
+
+          <button className="bg-red-600 cursor-pointer text-white px-5 py-2 rounded-lg">
+            Clear All
+          </button>
         </div>
       </div>
     </>
