@@ -21,6 +21,7 @@ const TodoApp = () => {
       <div className="flex items-center flex-col max-w-5/12 mx-auto">
         <h1 className="text-5xl font-bold text-orange-600 mt-2 mb-20">
           Todo App
+
         </h1>
         <div className="w-full space-y-5">
           <div className="flex gap-5">

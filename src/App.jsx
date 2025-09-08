@@ -1,12 +1,14 @@
-import TodoApp from "./projects/2_project/TodoApp";
-
+import { Counter, Destinations, TodoApp, UserList } from "./projects";
 
 const App = () => {
   return (
     <>
-     <div className="container mx-auto">
-       <TodoApp />
-     </div>
+      <div className="container mx-auto">
+        <Counter />
+        <TodoApp />
+        <UserList />
+        <Destinations />
+      </div>
     </>
   );
 };
