@@ -6,36 +6,46 @@ const MultipleInputs = () => {
     lastName: "",
     email: "",
     password: "",
+    isChecked: false,
+    selected: "",
   });
 
   const inputHandeler = (e) => {
+    const { name, value, checked } = e.target;
     setFormData((prev) => {
       return {
         ...prev,
-        [e.target.name]: e.target.value,
+        [name]: e.target.type === "checkbox" ? checked : value,
       };
     });
   };
 
-  const handelSubmit = (event) => {
-    event.preventDefault();
+  const handelSubmit = (e) => {
+    e.preventDefault();
     console.log(formData);
 
-    // form reset
     setFormData({
       firstName: "",
       lastName: "",
       email: "",
       password: "",
+      isChecked: false,
+      selected: "",
     });
   };
+
   return (
     <>
       <div className="max-w-sm mx-auto">
         <h1 className="text-2xl font-bold text-center">
           Multiple Input Handel
         </h1>
-        <form action="" onSubmit={handelSubmit}>
+        <form
+          action=""
+          onSubmit={(e) => {
+            handelSubmit(e);
+          }}
+        >
           <div className="flex flex-col mb-5">
             <label htmlFor="fn">First Name</label>
             <input
@@ -91,6 +101,36 @@ const MultipleInputs = () => {
                 inputHandeler(e);
               }}
             />
+          </div>
+
+          <div className="flex flex-col mb-5">
+            <select
+              name="selected"
+              id="selected"
+              value={formData.selected}
+              onChange={inputHandeler}
+            >
+              <option value="" disabled>
+                --Select Your Birthday
+              </option>
+              <option>2003</option>
+              <option>2004</option>
+              <option>2005</option>
+              <option>2006</option>
+            </select>
+          </div>
+
+          <div className="flex items-center gap-2 mb-5">
+            <input
+              type="checkbox"
+              checked={formData.isChecked}
+              name="isChecked"
+              id="checked"
+              onChange={(e) => {
+                inputHandeler(e);
+              }}
+            />
+            <label htmlFor="checked">I agree all trams and conditions</label>
           </div>
           <button
             type="submit"

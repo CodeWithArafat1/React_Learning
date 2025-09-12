@@ -6,14 +6,16 @@ const Test = () => {
     lastName: "",
     email: "",
     password: "",
+    isChecked: false,
+    selected: "",
   });
 
   const inputHandeler = (e) => {
-    const { name, value } = e.target;
+    const { name, value, checked } = e.target;
     setFormData((prev) => {
       return {
         ...prev,
-        [name]: value,
+        [name]: e.target.type === "checkbox" ? checked : value,
       };
     });
   };
@@ -27,6 +29,8 @@ const Test = () => {
       lastName: "",
       email: "",
       password: "",
+      isChecked: false,
+      selected: "",
     });
   };
 
@@ -97,6 +101,36 @@ const Test = () => {
                 inputHandeler(e);
               }}
             />
+          </div>
+
+          <div className="flex flex-col mb-5">
+            <select
+              name="selected"
+              id="selected"
+              value={formData.selected}
+              onChange={inputHandeler}
+            >
+              <option value="" disabled>
+                --Select Your Birthday
+              </option>
+              <option>2003</option>
+              <option>2004</option>
+              <option>2005</option>
+              <option>2006</option>
+            </select>
+          </div>
+
+          <div className="flex items-center gap-2 mb-5">
+            <input
+              type="checkbox"
+              checked={formData.isChecked}
+              name="isChecked"
+              id="checked"
+              onChange={(e) => {
+                inputHandeler(e);
+              }}
+            />
+            <label htmlFor="checked">I agree all trams and conditions</label>
           </div>
           <button
             type="submit"
