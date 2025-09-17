@@ -1,12 +1,11 @@
-import Test from "./uncontrol_form_handeling/Test";
-import Useref from "./uncontrol_form_handeling/Useref";
-
+import Destinations from "./projects/5_project/Destinations";
+import DumyTextGenerator from "./projects/7_project/DumyTextGenerator";
 
 const App = () => {
   return (
     <>
       <div className="container mx-auto">
-        <Useref />
+        <DumyTextGenerator />
       </div>
     </>
   );

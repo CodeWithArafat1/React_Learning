@@ -14,7 +14,7 @@ const Users = () => {
         <h1 className="text-4xl font-bold text-center">User Lists</h1>
 
         <div className="">
-          <Suspense fallback={"loading..."}>
+          <Suspense fallback={<h1 className="text-2xl font-bold">Loading....</h1>}>
             <FirndsPromise promiseMessage={friendsPromise}/>
           </Suspense>
         </div>
