@@ -4,6 +4,7 @@ import generateDumyText from "./generateText";
 const DumyTextGenerator = () => {
   const [dumyText, setDumyText] = useState("");
   const [userInput, setUserInput] = useState({ word: 0, paragraph: 0 });
+  const [err, setErr] = useState(false);
   return (
     <>
       <div className="max-w-xl mx-auto">
@@ -17,10 +18,13 @@ const DumyTextGenerator = () => {
             const words = parseInt(rowData.word);
             const paragraph = parseInt(rowData.paragraph);
 
-            if (!words || words <= 0) return;
-            if (!paragraph || paragraph <= 0) return;
+            if (!words || words <= 0 || !paragraph || paragraph <= 0) {
+              setErr(true);
+              return;
+            }
             setUserInput({ words, paragraph });
             setDumyText(generateDumyText(words, paragraph));
+            setErr(false)
           }}
         >
           <div className="flex flex-col mb-5">
@@ -29,7 +33,7 @@ const DumyTextGenerator = () => {
               type="number"
               name="paragraph"
               id="para"
-              className="border-2 border-blue-600 outline-0 px-2 py-1 rounded"
+              className={`border-2 border-blue-600 outline-0 px-2 py-1 rounded ${err ? 'border-2 border-red-600 bg-red-200/20': ''}`}
               placeholder="Number of paragraph"
             />
           </div>
@@ -39,7 +43,7 @@ const DumyTextGenerator = () => {
               type="number"
               name="word"
               id="word"
-              className="border-2 border-blue-600 outline-0 px-2 py-1 rounded"
+              className={`border-2 border-blue-600 outline-0 px-2 py-1 rounded ${err ? 'border-2 border-red-600 bg-red-200/20': 'border-2 border-blue-600 bg-none'}`}
               placeholder="Number of words per sentence"
             />
           </div>
