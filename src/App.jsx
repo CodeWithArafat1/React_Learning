@@ -1,22 +1,20 @@
-import Countries from "./PH_Module/2/Countries";
-import Main from "./PH_Module/2/Main";
-import DumyTextGenerator from "./projects/7_project/DumyTextGenerator";
-import Playears from "./PH_Module/3";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-import ColorGenerator from "./projects/8_project/ColorGenerator";
-import CleanupExample from "./projects/8_project/CleanupExample";
+import FetchData from "./CustomHooks/FetchData";
+import Nav from "./ContextAPI/Nav";
+import ReduserExample from "./reduser/ReduserExample";
+import ShopingCart from "./projects/10_project/ShopingCart";
+import MemoExample from "./useMemo/MemoExample";
 
 const App = () => {
   return (
     <>
       <div className="container mx-auto">
         <div className="">
-          <ColorGenerator />
+         <MemoExample/>
         </div>
       </div>
 
-       <ToastContainer/>
+      <ToastContainer />
     </>
   );
 };
